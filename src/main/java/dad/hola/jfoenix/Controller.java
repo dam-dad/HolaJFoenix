@@ -17,22 +17,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
 public class Controller implements Initializable {
 
+	@FXML
+	private FontIcon topIcon;
 
-    @FXML
-    private JFXTextField nombreText;
+	@FXML
+	private JFXTextField nombreText;
 
-    @FXML
-    private JFXButton saludarButton;
+	@FXML
+	private JFXButton saludarButton;
 
-    @FXML
-    private VBox view;
+	@FXML
+	private VBox view;
 
 	public Controller() {
-		try { 
+		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/View.fxml"));
 			loader.setController(this);
 			loader.load();
@@ -40,29 +45,34 @@ public class Controller implements Initializable {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+
+		RadialGradient color = new RadialGradient(0, 0, 0.5, 0.5, 0.5, true, CycleMethod.NO_CYCLE,
+			new Stop(0, Color.RED),
+			new Stop(0.3, Color.GREEN),
+			new Stop(1, Color.BLACK)
+		); 
+		
+		topIcon.setIconColor(color);
 
 	}
-	
+
 	public VBox getView() {
 		return view;
 	}
 
-    @FXML
-    void onSaludarAction(ActionEvent event) {
+	@FXML
+	void onSaludarAction(ActionEvent event) {
 
-    	FontIcon icon = FontIcon.of(Devicons.APPLE, 32, Color.GREEN);
-    	
-    	Notifications.create()
-    		.graphic(icon)
-    		.title("Saludar")
-    		.text("Hola " + nombreText.getText())
-    		.hideAfter(Duration.seconds(5))
-    		.show();
-    	
-    }	
+		Notifications.create()
+			.graphic(FontIcon.of(Devicons.APPLE, 64, Color.GREEN))
+			.title("Saludar")
+			.text("¡Hola " + nombreText.getText() + "!")
+			.hideAfter(Duration.seconds(5))
+			.show();
+
+	}
 
 }

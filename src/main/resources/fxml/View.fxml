@@ -8,7 +8,7 @@
 
 <VBox fx:id="view" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <FontIcon iconColor="#a1a1a1" iconLiteral="di-prolog" iconSize="128" />
+      <FontIcon fx:id="topIcon" iconColor="#a1a1a1" iconLiteral="di-prolog" iconSize="128" />
       <JFXTextField fx:id="nombreText" promptText="Introduce un nombre" />
       <JFXButton fx:id="saludarButton" onAction="#onSaludarAction" text="Quítate el sombrero">
          <graphic>
